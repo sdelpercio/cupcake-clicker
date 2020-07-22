@@ -1,11 +1,24 @@
 import React from "react";
 // styles
-import { Flex, Text } from "@chakra-ui/core";
+import { Flex, Text, Button } from "@chakra-ui/core";
 
-function Bakery() {
+function Bakery({
+  cupcakes,
+  bakeCupcakes,
+  toasters,
+  ovens,
+  industrialOvens,
+  friends,
+  chefs,
+  cupcakeGods,
+}) {
   return (
     <Flex>
-      <Text>Bakery</Text>
+      {/* Counter and bake button */}
+      <Flex>
+        <Text>{cupcakes}</Text>
+        <Button onClick={bakeCupcakes}>Bake!</Button>
+      </Flex>
     </Flex>
   );
 }
