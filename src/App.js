@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Route } from "react-router-dom";
+import { useInterval } from "./utils/useInterval";
 // components
 import Header from "./components/Header";
 import Bakery from "./components/Bakery";
@@ -25,11 +26,34 @@ function App() {
     setCupcakes(cupcakes + total);
   }
 
+  useInterval(() => {
+    let total = 0;
+    total += 5 * friends;
+    total += 10 * chefs;
+    total += 100 * cupcakeGods;
+
+    setCupcakes(cupcakes + total);
+    document.title = `${cupcakes} Cupcakes Baked`;
+  }, 1000);
+
   return (
     <Flex flexDirection="column">
       <Header />
       <Route path="/store">
-        <Store />
+        <Store
+          toasters={toasters}
+          ovens={ovens}
+          industrialOvens={industrialOvens}
+          friends={friends}
+          chefs={chefs}
+          cupcakeGods={cupcakeGods}
+          setToasters={setToasters}
+          setOvens={setOvens}
+          setIndustrialOvens={setIndustrialOvens}
+          setFriends={setFriends}
+          setChefs={setChefs}
+          setCupcakeGods={setCupcakeGods}
+        />
       </Route>
       <Route exact path="/">
         <Bakery
