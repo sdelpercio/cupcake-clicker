@@ -1,4 +1,11 @@
 import React from "react";
+// components & media
+import { ReactComponent as Toaster } from "../media/toaster-svg.svg";
+import { ReactComponent as Oven } from "../media/oven-svg.svg";
+import { ReactComponent as IndustrialOven } from "../media/industrial-oven-svg.svg";
+import { ReactComponent as Friends } from "../media/friends-svg.svg";
+import { ReactComponent as Chef } from "../media/chef-svg.svg";
+import { ReactComponent as CupcakeGod } from "../media/cupcake-god-svg.svg";
 // styles
 import { Flex, Text, Button } from "@chakra-ui/core";
 
@@ -21,7 +28,7 @@ function Store({
   return (
     <Flex>
       <Flex>
-        <Text>Toasters</Text>
+        <Toaster style={{ height: "75px", width: "75px" }} />
         <Text>Current: {toasters}</Text>
         <Button
           onClick={(e) => {
@@ -33,7 +40,7 @@ function Store({
         </Button>
       </Flex>
       <Flex>
-        <Text>Ovens</Text>
+        <Oven style={{ height: "75px", width: "75px" }} />
         <Text>Current: {ovens}</Text>
         <Button
           onClick={(e) => {
@@ -45,7 +52,7 @@ function Store({
         </Button>
       </Flex>
       <Flex>
-        <Text>Industrial Ovens</Text>
+        <IndustrialOven style={{ height: "75px", width: "75px" }} />
         <Text>Current: {industrialOvens}</Text>
         <Button
           onClick={(e) => {
@@ -57,7 +64,7 @@ function Store({
         </Button>
       </Flex>
       <Flex>
-        <Text>Friends</Text>
+        <Friends style={{ height: "75px", width: "75px" }} />
         <Text>Current: {friends}</Text>
         <Button
           onClick={(e) => {
@@ -69,7 +76,7 @@ function Store({
         </Button>
       </Flex>
       <Flex>
-        <Text>Chefs</Text>
+        <Chef style={{ height: "75px", width: "75px" }} />
         <Text>Current: {chefs}</Text>
         <Button
           onClick={(e) => {
@@ -81,7 +88,7 @@ function Store({
         </Button>
       </Flex>
       <Flex>
-        <Text>Cupcake Gods</Text>
+        <CupcakeGod style={{ height: "75px", width: "75px" }} />
         <Text>Current: {cupcakeGods}</Text>
         <Button
           onClick={(e) => {
