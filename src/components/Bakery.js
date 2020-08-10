@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // components and media
 import { ReactComponent as Cupcake } from "../media/cupcake-svg.svg";
 import { ReactComponent as Toaster } from "../media/toaster-svg.svg";
@@ -8,7 +8,8 @@ import { ReactComponent as Friends } from "../media/friends-svg.svg";
 import { ReactComponent as Chef } from "../media/chef-svg.svg";
 import { ReactComponent as CupcakeGod } from "../media/cupcake-god-svg.svg";
 // styles
-import { Flex, Text, Button, Box } from "@chakra-ui/core";
+import { Flex, Text, Button, Box, Scale } from "@chakra-ui/core";
+import { useSpring, animated } from "react-spring";
 
 function Bakery({
   cupcakes,
@@ -20,12 +21,28 @@ function Bakery({
   chefs,
   cupcakeGods,
 }) {
+  const [resetScale, setResetScale] = useState(false);
+
+  // TODO: react-spring on click for baking cupcakes
+  // const props = useSpring({
+  //   from: { transform: "scale(1, 1)" },
+  //   to: { transform: "scale(1.5, 1.5)" },
+  //   onRest: () => setResetScale((state) => !state),
+  //   reset: resetScale,
+  // });
+  // const AnimatedCupcake = animated(Cupcake);
+
   return (
     <Flex direction="column" m="0 auto">
       <Flex direction="column" align="center" textAlign="center">
         <Button
           as={Cupcake}
           onClick={bakeCupcakes}
+          _hover={{ transform: "scale(1.25, 1.25)" }}
+          _focus={{
+            boxShadow:
+              "0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)",
+          }}
           bg="None"
           rounded="50%"
           cursor="pointer"
