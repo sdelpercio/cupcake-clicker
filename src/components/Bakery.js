@@ -46,22 +46,26 @@ function Bakery({
           <Text>Ovens</Text>
           <Text>{ovens}</Text>
         </Box>
-        <Flex>
+        <Box textAlign="center">
+          <IndustrialOven style={{ height: "75px", width: "75px" }} />
           <Text>Industrial Ovens</Text>
           <Text>{industrialOvens}</Text>
-        </Flex>
-        <Flex>
+        </Box>
+        <Box textAlign="center">
+          <Friends style={{ height: "75px", width: "75px" }} />
           <Text>Friends</Text>
           <Text>{friends}</Text>
-        </Flex>
-        <Flex>
+        </Box>
+        <Box textAlign="center">
+          <Chef style={{ height: "75px", width: "75px" }} />
           <Text>Chefs</Text>
           <Text>{chefs}</Text>
-        </Flex>
-        <Flex>
+        </Box>
+        <Box textAlign="center">
+          <CupcakeGod style={{ height: "75px", width: "75px" }} />
           <Text>Cupcake Gods</Text>
           <Text>{cupcakeGods}</Text>
-        </Flex>
+        </Box>
       </Flex>
     </Flex>
   );
