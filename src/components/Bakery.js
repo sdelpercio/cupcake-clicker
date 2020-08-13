@@ -56,7 +56,9 @@ function Bakery({
           mb="1rem"
         />
         <Text>{cupcakes}</Text>
-        <Text>⬆ Bake! ⬆</Text>
+        <Text fontSize="2rem" fontFamily="'Sue Ellen Francisco', cursive">
+          ⬆ Bake! ⬆
+        </Text>
       </Flex>
       <Flex
         direction={["column", "row"]}
