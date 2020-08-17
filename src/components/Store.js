@@ -10,8 +10,7 @@ import { ReactComponent as CupcakeGod } from "../media/cupcake-god-svg.svg";
 import { Flex, Text, Button, Box } from "@chakra-ui/core";
 
 function Store({
-  cupcakes,
-  bakeCupcakes,
+  purchaseItem,
   toasters,
   ovens,
   industrialOvens,
@@ -81,9 +80,7 @@ function Store({
             e.preventDefault();
             setOvens(ovens + 1);
           }}
-        >
-          Purchase
-        </Button>
+        ></Button>
       </Flex>
       {/* INDUSTRIAL OVEN */}
       <Flex

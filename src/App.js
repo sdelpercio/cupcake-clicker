@@ -9,6 +9,7 @@ import Store from "./components/Store";
 import { Flex } from "@chakra-ui/core";
 
 function App() {
+  // cupcakes and item state
   const [cupcakes, setCupcakes] = useState(0);
   const [toasters, setToasters] = useState(0);
   const [ovens, setOvens] = useState(0);
@@ -16,6 +17,14 @@ function App() {
   const [friends, setFriends] = useState(0);
   const [chefs, setChefs] = useState(0);
   const [cupcakeGods, setCupcakeGods] = useState(0);
+
+  // TODO: purchase state
+  // const [toastersCost, setToastersCost] = useState(0);
+  // const [ovensCost, setOvensCost] = useState(0);
+  // const [industrialOvensCost, setIndustrialOvensCost] = useState(0);
+  // const [friendsCost, setFriendsCost] = useState(0);
+  // const [chefsCost, setChefsCost] = useState(0);
+  // const [cupcakeGodsCost, setCupcakeGodsCost] = useState(0);
 
   // setup item purchasing functions
   const purchaseLookup = {};
@@ -28,11 +37,12 @@ function App() {
   purchaseLookup.cupcakeGods = () =>
     setCupcakeGods((cupcakeGods) => cupcakeGods + 1);
 
-  function purchaseItem(e, item, cost) {
-    e.preventDefault();
-    purchaseLookup[item]();
-    setCupcakes((cupcakes) => cupcakes - cost);
-  }
+  // TODO: purchase Item function, decrease cupcakes, increase item count, increase cost
+  // function purchaseItem(e, item) {
+  //   e.preventDefault();
+  //   purchaseLookup[item]();
+  //   setCupcakes((cupcakes) => cupcakes - cost);
+  // }
 
   function bakeCupcakes() {
     let total = 1;
