@@ -17,22 +17,40 @@ function App() {
   const [chefs, setChefs] = useState(0);
   const [cupcakeGods, setCupcakeGods] = useState(0);
 
+  // setup item purchasing functions
+  const purchaseLookup = {};
+  purchaseLookup.toasters = () => setToasters((toasters) => toasters + 1);
+  purchaseLookup.ovens = () => setOvens((ovens) => ovens + 1);
+  purchaseLookup.industrialOvens = () =>
+    setIndustrialOvens((industrialOvens) => industrialOvens + 1);
+  purchaseLookup.friends = () => setFriends((friends) => friends + 1);
+  purchaseLookup.chefs = () => setChefs((chefs) => chefs + 1);
+  purchaseLookup.cupcakeGods = () =>
+    setCupcakeGods((cupcakeGods) => cupcakeGods + 1);
+
+  function purchaseItem(e, item, cost) {
+    e.preventDefault();
+    purchaseLookup[item]();
+    setCupcakes((cupcakes) => cupcakes - cost);
+  }
+
   function bakeCupcakes() {
     let total = 1;
     total += 5 * toasters;
     total += 10 * ovens;
     total += 100 * industrialOvens;
 
-    setCupcakes(cupcakes + total);
+    setCupcakes((cupcakes) => cupcakes + total);
   }
 
+  // increase cupcakes based on items
   useInterval(() => {
     let total = 0;
     total += 5 * friends;
     total += 10 * chefs;
     total += 100 * cupcakeGods;
 
-    setCupcakes(cupcakes + total);
+    setCupcakes((cupcakes) => cupcakes + total);
     document.title = `${cupcakes} Cupcakes Baked`;
   }, 1000);
 
@@ -41,6 +59,7 @@ function App() {
       <Header />
       <Route path="/store">
         <Store
+          purchaseItem={purchaseItem}
           toasters={toasters}
           ovens={ovens}
           industrialOvens={industrialOvens}
