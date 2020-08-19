@@ -11,25 +11,26 @@ import { Flex, Text, Button, Box } from "@chakra-ui/core";
 
 function Store({
   purchaseItem,
+  cupcakes,
   toasters,
   ovens,
   industrialOvens,
   friends,
   chefs,
   cupcakeGods,
-  setToasters,
-  setOvens,
-  setIndustrialOvens,
-  setFriends,
-  setChefs,
-  setCupcakeGods,
+  toastersCost,
+  ovensCost,
+  industrialOvensCost,
+  friendsCost,
+  chefsCost,
+  cupcakeGodsCost,
 }) {
   return (
     <Flex
       direction="column"
       justify="space-between"
       align="center"
-      w={["90%", "75%", "75%", "50%"]}
+      w={["90%", "90%", "80%", "80%", "50%"]}
       m="0 auto"
     >
       {/* TOASTER */}
@@ -45,17 +46,17 @@ function Store({
           <Text>Current: {toasters}</Text>
         </Box>
         <Text textAlign="center" pb={["1rem", "0rem"]}>
-          Increase the amount of cupcakes on each bake with a Toaster!
+          Increase the amount of cupcakes on each bake with a <b>Toaster!</b>
           <br />
           Adds +5 cupcakes baked on each press!
         </Text>
         <Button
+          isDisabled={cupcakes >= toastersCost ? false : true}
           onClick={(e) => {
-            e.preventDefault();
-            setToasters(toasters + 1);
+            purchaseItem(e, "toasters");
           }}
         >
-          Purchase
+          {`${toastersCost} Cs`}
         </Button>
       </Flex>
       {/* OVEN */}
@@ -71,16 +72,18 @@ function Store({
           <Text>Current: {ovens}</Text>
         </Box>
         <Text textAlign="center" pb={["1rem", "0rem"]}>
-          Increase the amount of cupcakes on each bake with an Oven!
+          Increase the amount of cupcakes on each bake with an <b>Oven!</b>
           <br />
           Adds +10 cupcakes baked on each press!
         </Text>
         <Button
+          isDisabled={cupcakes >= ovensCost ? false : true}
           onClick={(e) => {
-            e.preventDefault();
-            setOvens(ovens + 1);
+            purchaseItem(e, "ovens");
           }}
-        ></Button>
+        >
+          {`${ovensCost} Cs`}
+        </Button>
       </Flex>
       {/* INDUSTRIAL OVEN */}
       <Flex
@@ -95,17 +98,18 @@ function Store({
           <Text>Current: {industrialOvens}</Text>
         </Box>
         <Text textAlign="center" pb={["1rem", "0rem"]}>
-          Increase the amount of cupcakes on each bake with an Industrial Oven!
+          Increase the amount of cupcakes on each bake with an{" "}
+          <b>Industrial Oven!</b>
           <br />
           Adds +100 cupcakes baked on each press!
         </Text>
         <Button
+          isDisabled={cupcakes >= industrialOvensCost ? false : true}
           onClick={(e) => {
-            e.preventDefault();
-            setIndustrialOvens(industrialOvens + 1);
+            purchaseItem(e, "industrialOvens");
           }}
         >
-          Purchase
+          {`${industrialOvensCost} Cs`}
         </Button>
       </Flex>
       {/* FRIENDS */}
@@ -121,17 +125,18 @@ function Store({
           <Text>Current: {friends}</Text>
         </Box>
         <Text textAlign="center" pb={["1rem", "0rem"]}>
-          Increase the amount of cupcakes you bake by recruiting a Friend!
+          Increase the amount of cupcakes you bake by recruiting a{" "}
+          <b>Friend!</b>
           <br />
           Adds +5 cupcakes baked every second!
         </Text>
         <Button
+          isDisabled={cupcakes >= friendsCost ? false : true}
           onClick={(e) => {
-            e.preventDefault();
-            setFriends(friends + 1);
+            purchaseItem(e, "friends");
           }}
         >
-          Purchase
+          {`${friendsCost} Cs`}
         </Button>
       </Flex>
       {/* CHEF */}
@@ -147,17 +152,17 @@ function Store({
           <Text>Current: {chefs}</Text>
         </Box>
         <Text textAlign="center" pb={["1rem", "0rem"]}>
-          Increase the amount of cupcakes you bake by recruiting a Chef!
+          Increase the amount of cupcakes you bake by recruiting a <b>Chef!</b>
           <br />
           Adds +10 cupcakes baked every second!
         </Text>
         <Button
+          isDisabled={cupcakes >= chefsCost ? false : true}
           onClick={(e) => {
-            e.preventDefault();
-            setChefs(chefs + 1);
+            purchaseItem(e, "chefs");
           }}
         >
-          Purchase
+          {`${chefsCost} Cs`}
         </Button>
       </Flex>
       {/* CUPCAKE GOD */}
@@ -173,17 +178,18 @@ function Store({
           <Text>Current: {cupcakeGods}</Text>
         </Box>
         <Text textAlign="center" pb={["1rem", "0rem"]}>
-          Increase the amount of cupcakes you bake by recruiting a CUPCAKE GOD!
+          Increase the amount of cupcakes you bake by recruiting a{" "}
+          <b>CUPCAKE GOD!</b>
           <br />
           Adds +100 cupcakes baked every second!
         </Text>
         <Button
+          isDisabled={cupcakes >= cupcakeGodsCost ? false : true}
           onClick={(e) => {
-            e.preventDefault();
-            setCupcakeGods(cupcakeGods + 1);
+            purchaseItem(e, "cupcakeGods");
           }}
         >
-          Purchase
+          {`${cupcakeGodsCost} Cs`}
         </Button>
       </Flex>
     </Flex>
