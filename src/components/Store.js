@@ -43,9 +43,16 @@ function Store({
       >
         <Box textAlign="center" pb={["1rem", "0rem"]}>
           <Toaster style={{ height: "75px", width: "75px" }} />
-          <Text>Current: {toasters}</Text>
+          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
+            Current: {toasters}
+          </Text>
         </Box>
-        <Text textAlign="center" pb={["1rem", "0rem"]}>
+        <Text
+          textAlign="center"
+          pb={["1rem", "0rem"]}
+          fontSize="1.2rem"
+          fontFamily="'Sue Ellen Francisco', cursive"
+        >
           Increase the amount of cupcakes on each bake with a <b>Toaster!</b>
           <br />
           Adds +5 cupcakes baked on each press!
@@ -69,9 +76,16 @@ function Store({
       >
         <Box textAlign="center" pb={["1rem", "0rem"]}>
           <Oven style={{ height: "75px", width: "75px" }} />
-          <Text>Current: {ovens}</Text>
+          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
+            Current: {ovens}
+          </Text>
         </Box>
-        <Text textAlign="center" pb={["1rem", "0rem"]}>
+        <Text
+          textAlign="center"
+          pb={["1rem", "0rem"]}
+          fontSize="1.2rem"
+          fontFamily="'Sue Ellen Francisco', cursive"
+        >
           Increase the amount of cupcakes on each bake with an <b>Oven!</b>
           <br />
           Adds +10 cupcakes baked on each press!
@@ -95,9 +109,16 @@ function Store({
       >
         <Box textAlign="center" pb={["1rem", "0rem"]}>
           <IndustrialOven style={{ height: "75px", width: "75px" }} />
-          <Text>Current: {industrialOvens}</Text>
+          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
+            Current: {industrialOvens}
+          </Text>
         </Box>
-        <Text textAlign="center" pb={["1rem", "0rem"]}>
+        <Text
+          textAlign="center"
+          pb={["1rem", "0rem"]}
+          fontSize="1.2rem"
+          fontFamily="'Sue Ellen Francisco', cursive"
+        >
           Increase the amount of cupcakes on each bake with an{" "}
           <b>Industrial Oven!</b>
           <br />
@@ -122,9 +143,16 @@ function Store({
       >
         <Box textAlign="center" pb={["1rem", "0rem"]}>
           <Friends style={{ height: "75px", width: "75px" }} />
-          <Text>Current: {friends}</Text>
+          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
+            Current: {friends}
+          </Text>
         </Box>
-        <Text textAlign="center" pb={["1rem", "0rem"]}>
+        <Text
+          textAlign="center"
+          pb={["1rem", "0rem"]}
+          fontSize="1.2rem"
+          fontFamily="'Sue Ellen Francisco', cursive"
+        >
           Increase the amount of cupcakes you bake by recruiting a{" "}
           <b>Friend!</b>
           <br />
@@ -149,9 +177,16 @@ function Store({
       >
         <Box textAlign="center" pb={["1rem", "0rem"]}>
           <Chef style={{ height: "75px", width: "75px" }} />
-          <Text>Current: {chefs}</Text>
+          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
+            Current: {chefs}
+          </Text>
         </Box>
-        <Text textAlign="center" pb={["1rem", "0rem"]}>
+        <Text
+          textAlign="center"
+          pb={["1rem", "0rem"]}
+          fontSize="1.2rem"
+          fontFamily="'Sue Ellen Francisco', cursive"
+        >
           Increase the amount of cupcakes you bake by recruiting a <b>Chef!</b>
           <br />
           Adds +10 cupcakes baked every second!
@@ -175,9 +210,16 @@ function Store({
       >
         <Box textAlign="center" pb={["1rem", "0rem"]}>
           <CupcakeGod style={{ height: "75px", width: "75px" }} />
-          <Text>Current: {cupcakeGods}</Text>
+          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
+            Current: {cupcakeGods}
+          </Text>
         </Box>
-        <Text textAlign="center" pb={["1rem", "0rem"]}>
+        <Text
+          textAlign="center"
+          pb={["1rem", "0rem"]}
+          fontSize="1.2rem"
+          fontFamily="'Sue Ellen Francisco', cursive"
+        >
           Increase the amount of cupcakes you bake by recruiting a{" "}
           <b>CUPCAKE GOD!</b>
           <br />

@@ -10,7 +10,7 @@ function Header() {
     <Flex
       flexDirection="column"
       width={["100%", "75%", "50%", "50%"]}
-      my={["1rem", "2rem", "4rem"]}
+      my={["1rem", "2rem"]}
       mx="auto"
     >
       <Text fontSize="4rem" textAlign="center" fontFamily="'Monoton', cursive">
