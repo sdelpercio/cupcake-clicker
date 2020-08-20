@@ -10,6 +10,7 @@ import { ReactComponent as CupcakeGod } from "../media/cupcake-god-svg.svg";
 // styles
 import { Flex, Text, Button, Box, Scale } from "@chakra-ui/core";
 import { useSpring, animated } from "react-spring";
+import { Keyframes } from "react-spring/renderprops";
 
 function Bakery({
   cupcakes,
@@ -34,12 +35,7 @@ function Bakery({
 
   return (
     <Flex direction="column" m="0 auto">
-      <Flex
-        direction="column"
-        align="center"
-        textAlign="center"
-        mb={["2rem", "4rem"]}
-      >
+      <Flex direction="column" align="center" textAlign="center" mb="2rem">
         <Button
           as={Cupcake}
           onClick={bakeCupcakes}
@@ -55,8 +51,19 @@ function Bakery({
           w="200px"
           mb="1rem"
         />
-        <Text>{cupcakes}</Text>
-        <Text fontSize="2rem" fontFamily="'Sue Ellen Francisco', cursive">
+        <Text
+          mb="0.5rem"
+          fontSize="2rem"
+          fontFamily="'Sue Ellen Francisco', cursive"
+        >
+          {cupcakes}
+        </Text>
+
+        <Text
+          fontSize="2rem"
+          fontFamily="'Sue Ellen Francisco', cursive"
+          letterSpacing="5px"
+        >
           ⬆ Bake! ⬆
         </Text>
       </Flex>
@@ -70,41 +77,69 @@ function Bakery({
       >
         <Box textAlign="center" w={["100%", "50%", "33%"]} mb="1rem">
           <Toaster
-            style={{ height: "75px", width: "75px", margin: "0 auto" }}
+            style={{
+              height: "75px",
+              width: "75px",
+              margin: "0 auto",
+            }}
           />
-          <Text>Toasters</Text>
-          <Text>{toasters}</Text>
+          <Text fontSize="1.2rem" fontFamily="'Sue Ellen Francisco', cursive">
+            Toasters
+          </Text>
+          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
+            {toasters}
+          </Text>
         </Box>
         <Box textAlign="center" w={["100%", "50%", "33%"]} mb="1rem">
           <Oven style={{ height: "75px", width: "75px", margin: "0 auto" }} />
-          <Text>Ovens</Text>
-          <Text>{ovens}</Text>
+          <Text fontSize="1.2rem" fontFamily="'Sue Ellen Francisco', cursive">
+            Ovens
+          </Text>
+          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
+            {ovens}
+          </Text>
         </Box>
         <Box textAlign="center" w={["100%", "50%", "33%"]} mb="1rem">
           <IndustrialOven
             style={{ height: "75px", width: "75px", margin: "0 auto" }}
           />
-          <Text>Industrial Ovens</Text>
-          <Text>{industrialOvens}</Text>
+          <Text fontSize="1.2rem" fontFamily="'Sue Ellen Francisco', cursive">
+            Industrial Ovens
+          </Text>
+          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
+            {industrialOvens}
+          </Text>
         </Box>
         <Box textAlign="center" w={["100%", "50%", "33%"]} mb="1rem">
           <Friends
             style={{ height: "75px", width: "75px", margin: "0 auto" }}
           />
-          <Text>Friends</Text>
-          <Text>{friends}</Text>
+          <Text fontSize="1.2rem" fontFamily="'Sue Ellen Francisco', cursive">
+            Friends
+          </Text>
+          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
+            {friends}
+          </Text>
         </Box>
         <Box textAlign="center" w={["100%", "50%", "33%"]} mb="1rem">
           <Chef style={{ height: "75px", width: "75px", margin: "0 auto" }} />
-          <Text>Chefs</Text>
-          <Text>{chefs}</Text>
+          <Text fontSize="1.2rem" fontFamily="'Sue Ellen Francisco', cursive">
+            Chefs
+          </Text>
+          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
+            {chefs}
+          </Text>
         </Box>
         <Box textAlign="center" w={["100%", "50%", "33%"]} mb="1rem">
           <CupcakeGod
             style={{ height: "75px", width: "75px", margin: "0 auto" }}
           />
-          <Text>Cupcake Gods</Text>
-          <Text>{cupcakeGods}</Text>
+          <Text fontSize="1.2rem" fontFamily="'Sue Ellen Francisco', cursive">
+            Cupcake Gods
+          </Text>
+          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
+            {cupcakeGods}
+          </Text>
         </Box>
       </Flex>
     </Flex>
