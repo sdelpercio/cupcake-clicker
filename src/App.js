@@ -9,14 +9,31 @@ import Store from "./components/Store";
 import { Flex } from "@chakra-ui/core";
 
 function App() {
+  // retrieve localstorage info if possible
+  const storedCupcakes = Number(window.localStorage.getItem("cupcakes"));
+  const storedTs = Number(window.localStorage.getItem("toasters"));
+  const storedOs = Number(window.localStorage.getItem("ovens"));
+  const storedIOs = Number(window.localStorage.getItem("industrialOvens"));
+  const storedFs = Number(window.localStorage.getItem("friends"));
+  const storedCs = Number(window.localStorage.getItem("chefs"));
+  const storedCGs = Number(window.localStorage.getItem("cupcakeGods"));
+  const storedTsC = Number(window.localStorage.getItem("toastersCost"));
+  const storedOsC = Number(window.localStorage.getItem("ovensCost"));
+  const storedIOsC = Number(window.localStorage.getItem("industrialOvensCost"));
+  const storedFsC = Number(window.localStorage.getItem("friendsCost"));
+  const storedCsC = Number(window.localStorage.getItem("chefsCost"));
+  const storedCGsC = Number(window.localStorage.getItem("cupcakeGodsCost"));
+
   // cupcakes and item state
-  const [cupcakes, setCupcakes] = useState(0);
-  const [toasters, setToasters] = useState(0);
-  const [ovens, setOvens] = useState(0);
-  const [industrialOvens, setIndustrialOvens] = useState(0);
-  const [friends, setFriends] = useState(0);
-  const [chefs, setChefs] = useState(0);
-  const [cupcakeGods, setCupcakeGods] = useState(0);
+  const [cupcakes, setCupcakes] = useState(storedCupcakes ? storedCupcakes : 0);
+  const [toasters, setToasters] = useState(storedTs ? storedTs : 0);
+  const [ovens, setOvens] = useState(storedOs ? storedOs : 0);
+  const [industrialOvens, setIndustrialOvens] = useState(
+    storedIOs ? storedIOs : 0
+  );
+  const [friends, setFriends] = useState(storedFs ? storedFs : 0);
+  const [chefs, setChefs] = useState(storedCs ? storedCs : 0);
+  const [cupcakeGods, setCupcakeGods] = useState(storedCGs ? storedCGs : 0);
 
   // setup item purchasing functions
   const purchaseLookup = {};
@@ -30,12 +47,16 @@ function App() {
     setCupcakeGods((cupcakeGods) => cupcakeGods + 1);
 
   // purchase state
-  const [toastersCost, setToastersCost] = useState(20);
-  const [ovensCost, setOvensCost] = useState(100);
-  const [industrialOvensCost, setIndustrialOvensCost] = useState(500);
-  const [friendsCost, setFriendsCost] = useState(1000);
-  const [chefsCost, setChefsCost] = useState(5000);
-  const [cupcakeGodsCost, setCupcakeGodsCost] = useState(100000);
+  const [toastersCost, setToastersCost] = useState(storedTsC ? storedTsC : 20);
+  const [ovensCost, setOvensCost] = useState(storedOsC ? storedOsC : 100);
+  const [industrialOvensCost, setIndustrialOvensCost] = useState(
+    storedIOsC ? storedIOsC : 500
+  );
+  const [friendsCost, setFriendsCost] = useState(storedFsC ? storedFsC : 1000);
+  const [chefsCost, setChefsCost] = useState(storedCsC ? storedCsC : 5000);
+  const [cupcakeGodsCost, setCupcakeGodsCost] = useState(
+    storedCGsC ? storedCGsC : 100000
+  );
 
   // setup item costs and increases
   const itemCostLookup = {};
@@ -86,16 +107,17 @@ function App() {
     setCupcakes((cupcakes) => cupcakes - itemCost);
   }
 
+  // increase cupcakes on click
   function bakeCupcakes() {
     let total = 1;
-    total += 5 * toasters;
+    total += 2 * toasters;
     total += 10 * ovens;
-    total += 50 * industrialOvens;
+    total += 25 * industrialOvens;
 
     setCupcakes((cupcakes) => cupcakes + total);
   }
 
-  // increase cupcakes based on items
+  // increase cupcakes over time
   useInterval(
     () => {
       let total = 0;
@@ -107,6 +129,26 @@ function App() {
       document.title = `${cupcakes} Cupcakes Baked`;
     },
     cupcakes ? 1000 : null
+  );
+
+  // save info to local storage, every 30 sec
+  useInterval(
+    () => {
+      window.localStorage.setItem("cupcakes", cupcakes);
+      window.localStorage.setItem("toasters", toasters);
+      window.localStorage.setItem("ovens", ovens);
+      window.localStorage.setItem("industrialOvens", industrialOvens);
+      window.localStorage.setItem("friends", friends);
+      window.localStorage.setItem("chefs", chefs);
+      window.localStorage.setItem("cupcakeGods", cupcakeGods);
+      window.localStorage.setItem("toastersCost", toastersCost);
+      window.localStorage.setItem("ovensCost", ovensCost);
+      window.localStorage.setItem("industrialOvensCost", industrialOvensCost);
+      window.localStorage.setItem("friendsCost", friendsCost);
+      window.localStorage.setItem("chefsCost", chefsCost);
+      window.localStorage.setItem("cupcakeGodsCost", cupcakeGodsCost);
+    },
+    cupcakes ? 1000 * 30 : null
   );
 
   return (
