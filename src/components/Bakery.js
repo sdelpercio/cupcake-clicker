@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 // components and media
+import { BakeryItems } from "./reusable/BakeryItems";
 import { ReactComponent as Cupcake } from "../media/cupcake-svg.svg";
 import { ReactComponent as Toaster } from "../media/toaster-svg.svg";
 import { ReactComponent as Oven } from "../media/oven-svg.svg";
@@ -8,9 +9,9 @@ import { ReactComponent as Friends } from "../media/friends-svg.svg";
 import { ReactComponent as Chef } from "../media/chef-svg.svg";
 import { ReactComponent as CupcakeGod } from "../media/cupcake-god-svg.svg";
 // styles
-import { Flex, Text, Button, Box, Scale } from "@chakra-ui/core";
-import { useSpring, animated } from "react-spring";
-import { Keyframes } from "react-spring/renderprops";
+import { Flex, Text, Button } from "@chakra-ui/core";
+// import { useSpring, animated } from "react-spring";
+// import { Keyframes } from "react-spring/renderprops";
 
 function Bakery({
   cupcakes,
@@ -22,6 +23,7 @@ function Bakery({
   chefs,
   cupcakeGods,
 }) {
+  // TEST: React-spring
   // const [resetScale, setResetScale] = useState(false);
 
   // TODO: react-spring on click for baking cupcakes
@@ -36,6 +38,7 @@ function Bakery({
   return (
     <Flex direction="column" m="0 auto">
       <Flex direction="column" align="center" textAlign="center" mb="2rem">
+        {/* CUPCAKE SVG, COUNT, AND BAKE TEXT */}
         <Button
           as={Cupcake}
           onClick={bakeCupcakes}
@@ -75,72 +78,20 @@ function Bakery({
         flexWrap="wrap"
         m="0 auto"
       >
-        <Box textAlign="center" w={["100%", "50%", "33%"]} mb="1rem">
-          <Toaster
-            style={{
-              height: "75px",
-              width: "75px",
-              margin: "0 auto",
-            }}
-          />
-          <Text fontSize="1.2rem" fontFamily="'Sue Ellen Francisco', cursive">
-            Toasters
-          </Text>
-          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
-            {toasters}
-          </Text>
-        </Box>
-        <Box textAlign="center" w={["100%", "50%", "33%"]} mb="1rem">
-          <Oven style={{ height: "75px", width: "75px", margin: "0 auto" }} />
-          <Text fontSize="1.2rem" fontFamily="'Sue Ellen Francisco', cursive">
-            Ovens
-          </Text>
-          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
-            {ovens}
-          </Text>
-        </Box>
-        <Box textAlign="center" w={["100%", "50%", "33%"]} mb="1rem">
-          <IndustrialOven
-            style={{ height: "75px", width: "75px", margin: "0 auto" }}
-          />
-          <Text fontSize="1.2rem" fontFamily="'Sue Ellen Francisco', cursive">
-            Industrial Ovens
-          </Text>
-          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
-            {industrialOvens}
-          </Text>
-        </Box>
-        <Box textAlign="center" w={["100%", "50%", "33%"]} mb="1rem">
-          <Friends
-            style={{ height: "75px", width: "75px", margin: "0 auto" }}
-          />
-          <Text fontSize="1.2rem" fontFamily="'Sue Ellen Francisco', cursive">
-            Friends
-          </Text>
-          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
-            {friends}
-          </Text>
-        </Box>
-        <Box textAlign="center" w={["100%", "50%", "33%"]} mb="1rem">
-          <Chef style={{ height: "75px", width: "75px", margin: "0 auto" }} />
-          <Text fontSize="1.2rem" fontFamily="'Sue Ellen Francisco', cursive">
-            Chefs
-          </Text>
-          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
-            {chefs}
-          </Text>
-        </Box>
-        <Box textAlign="center" w={["100%", "50%", "33%"]} mb="1rem">
-          <CupcakeGod
-            style={{ height: "75px", width: "75px", margin: "0 auto" }}
-          />
-          <Text fontSize="1.2rem" fontFamily="'Sue Ellen Francisco', cursive">
-            Cupcake Gods
-          </Text>
-          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
-            {cupcakeGods}
-          </Text>
-        </Box>
+        <BakeryItems Svg={Toaster} itemName="Toasters" itemAmount={toasters} />
+        <BakeryItems Svg={Oven} itemName="Ovens" itemAmount={ovens} />
+        <BakeryItems
+          Svg={IndustrialOven}
+          itemName="Industrial Ovens"
+          itemAmount={industrialOvens}
+        />
+        <BakeryItems Svg={Friends} itemName="Friends" itemAmount={friends} />
+        <BakeryItems Svg={Chef} itemName="Chefs" itemAmount={chefs} />
+        <BakeryItems
+          Svg={CupcakeGod}
+          itemName="Cupcake Gods"
+          itemAmount={cupcakeGods}
+        />
       </Flex>
     </Flex>
   );
