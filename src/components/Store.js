@@ -1,5 +1,6 @@
 import React from "react";
 // components & media
+import { StoreItems } from "./reusable/StoreItems";
 import { ReactComponent as Toaster } from "../media/toaster-svg.svg";
 import { ReactComponent as Oven } from "../media/oven-svg.svg";
 import { ReactComponent as IndustrialOven } from "../media/industrial-oven-svg.svg";
@@ -33,207 +34,72 @@ function Store({
       w={["90%", "90%", "80%", "80%", "50%"]}
       m="0 auto"
     >
-      {/* TOASTER */}
-      <Flex
-        direction={["column", "row"]}
-        justify="space-between"
-        align="center"
-        w="100%"
-        mb="3rem"
-      >
-        <Box textAlign="center" pb={["1rem", "0rem"]}>
-          <Toaster style={{ height: "75px", width: "75px" }} />
-          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
-            Current: {toasters}
-          </Text>
-        </Box>
-        <Text
-          textAlign="center"
-          pb={["1rem", "0rem"]}
-          fontSize="1.2rem"
-          fontFamily="'Sue Ellen Francisco', cursive"
-        >
-          Increase the amount of cupcakes on each bake with a <b>Toaster!</b>
-          <br />
-          Adds +5 cupcakes baked on each press!
-        </Text>
-        <Button
-          isDisabled={cupcakes >= toastersCost ? false : true}
-          onClick={(e) => {
-            purchaseItem(e, "toasters");
-          }}
-        >
-          {`${toastersCost} Cs`}
-        </Button>
-      </Flex>
-      {/* OVEN */}
-      <Flex
-        direction={["column", "row"]}
-        justify="space-between"
-        align="center"
-        w="100%"
-        mb="3rem"
-      >
-        <Box textAlign="center" pb={["1rem", "0rem"]}>
-          <Oven style={{ height: "75px", width: "75px" }} />
-          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
-            Current: {ovens}
-          </Text>
-        </Box>
-        <Text
-          textAlign="center"
-          pb={["1rem", "0rem"]}
-          fontSize="1.2rem"
-          fontFamily="'Sue Ellen Francisco', cursive"
-        >
-          Increase the amount of cupcakes on each bake with an <b>Oven!</b>
-          <br />
-          Adds +10 cupcakes baked on each press!
-        </Text>
-        <Button
-          isDisabled={cupcakes >= ovensCost ? false : true}
-          onClick={(e) => {
-            purchaseItem(e, "ovens");
-          }}
-        >
-          {`${ovensCost} Cs`}
-        </Button>
-      </Flex>
-      {/* INDUSTRIAL OVEN */}
-      <Flex
-        direction={["column", "row"]}
-        justify="space-between"
-        align="center"
-        w="100%"
-        mb="3rem"
-      >
-        <Box textAlign="center" pb={["1rem", "0rem"]}>
-          <IndustrialOven style={{ height: "75px", width: "75px" }} />
-          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
-            Current: {industrialOvens}
-          </Text>
-        </Box>
-        <Text
-          textAlign="center"
-          pb={["1rem", "0rem"]}
-          fontSize="1.2rem"
-          fontFamily="'Sue Ellen Francisco', cursive"
-        >
-          Increase the amount of cupcakes on each bake with an{" "}
-          <b>Industrial Oven!</b>
-          <br />
-          Adds +100 cupcakes baked on each press!
-        </Text>
-        <Button
-          isDisabled={cupcakes >= industrialOvensCost ? false : true}
-          onClick={(e) => {
-            purchaseItem(e, "industrialOvens");
-          }}
-        >
-          {`${industrialOvensCost} Cs`}
-        </Button>
-      </Flex>
-      {/* FRIENDS */}
-      <Flex
-        direction={["column", "row"]}
-        justify="space-between"
-        align="center"
-        w="100%"
-        mb="3rem"
-      >
-        <Box textAlign="center" pb={["1rem", "0rem"]}>
-          <Friends style={{ height: "75px", width: "75px" }} />
-          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
-            Current: {friends}
-          </Text>
-        </Box>
-        <Text
-          textAlign="center"
-          pb={["1rem", "0rem"]}
-          fontSize="1.2rem"
-          fontFamily="'Sue Ellen Francisco', cursive"
-        >
-          Increase the amount of cupcakes you bake by recruiting a{" "}
-          <b>Friend!</b>
-          <br />
-          Adds +5 cupcakes baked every second!
-        </Text>
-        <Button
-          isDisabled={cupcakes >= friendsCost ? false : true}
-          onClick={(e) => {
-            purchaseItem(e, "friends");
-          }}
-        >
-          {`${friendsCost} Cs`}
-        </Button>
-      </Flex>
-      {/* CHEF */}
-      <Flex
-        direction={["column", "row"]}
-        justify="space-between"
-        align="center"
-        w="100%"
-        mb="3rem"
-      >
-        <Box textAlign="center" pb={["1rem", "0rem"]}>
-          <Chef style={{ height: "75px", width: "75px" }} />
-          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
-            Current: {chefs}
-          </Text>
-        </Box>
-        <Text
-          textAlign="center"
-          pb={["1rem", "0rem"]}
-          fontSize="1.2rem"
-          fontFamily="'Sue Ellen Francisco', cursive"
-        >
-          Increase the amount of cupcakes you bake by recruiting a <b>Chef!</b>
-          <br />
-          Adds +10 cupcakes baked every second!
-        </Text>
-        <Button
-          isDisabled={cupcakes >= chefsCost ? false : true}
-          onClick={(e) => {
-            purchaseItem(e, "chefs");
-          }}
-        >
-          {`${chefsCost} Cs`}
-        </Button>
-      </Flex>
-      {/* CUPCAKE GOD */}
-      <Flex
-        direction={["column", "row"]}
-        justify="space-between"
-        align="center"
-        w="100%"
-        mb="3rem"
-      >
-        <Box textAlign="center" pb={["1rem", "0rem"]}>
-          <CupcakeGod style={{ height: "75px", width: "75px" }} />
-          <Text fontSize="1rem" fontFamily="'Sue Ellen Francisco', cursive">
-            Current: {cupcakeGods}
-          </Text>
-        </Box>
-        <Text
-          textAlign="center"
-          pb={["1rem", "0rem"]}
-          fontSize="1.2rem"
-          fontFamily="'Sue Ellen Francisco', cursive"
-        >
-          Increase the amount of cupcakes you bake by recruiting a{" "}
-          <b>CUPCAKE GOD!</b>
-          <br />
-          Adds +100 cupcakes baked every second!
-        </Text>
-        <Button
-          isDisabled={cupcakes >= cupcakeGodsCost ? false : true}
-          onClick={(e) => {
-            purchaseItem(e, "cupcakeGods");
-          }}
-        >
-          {`${cupcakeGodsCost} Cs`}
-        </Button>
-      </Flex>
+      <StoreItems
+        Svg={Toaster}
+        cupcakes={cupcakes}
+        purchaseItem={purchaseItem}
+        itemAmount={toasters}
+        itemDescOne="Increase the amount of cupcakes on each bake with a "
+        itemDescTwo="Adds +3 cupcakes baked on each click!"
+        itemNameBold="Toasters!"
+        itemFuncName="toasters"
+        itemCost={toastersCost}
+      />
+      <StoreItems
+        Svg={Oven}
+        cupcakes={cupcakes}
+        purchaseItem={purchaseItem}
+        itemAmount={ovens}
+        itemDescOne="Increase the amount of cupcakes on each bake with an "
+        itemDescTwo="Adds +10 cupcakes baked on each click!"
+        itemNameBold="Oven!"
+        itemFuncName="ovens"
+        itemCost={ovensCost}
+      />
+      <StoreItems
+        Svg={IndustrialOven}
+        cupcakes={cupcakes}
+        purchaseItem={purchaseItem}
+        itemAmount={industrialOvens}
+        itemDescOne="Increase the amount of cupcakes on each bake with an "
+        itemDescTwo="Adds +25 cupcakes baked on each click!"
+        itemNameBold="Industrial Oven!"
+        itemFuncName="industrialOvens"
+        itemCost={industrialOvensCost}
+      />
+      <StoreItems
+        Svg={Friends}
+        cupcakes={cupcakes}
+        purchaseItem={purchaseItem}
+        itemAmount={friends}
+        itemDescOne="Increase the amount of cupcakes you bake by recruiting a "
+        itemDescTwo="Adds +50 cupcakes baked every second!"
+        itemNameBold="Friend!"
+        itemFuncName="friends"
+        itemCost={friendsCost}
+      />
+      <StoreItems
+        Svg={Chef}
+        cupcakes={cupcakes}
+        purchaseItem={purchaseItem}
+        itemAmount={chefs}
+        itemDescOne="Increase the amount of cupcakes you bake by recruiting a "
+        itemDescTwo="Adds +250 cupcakes baked every second!"
+        itemNameBold="Chef!"
+        itemFuncName="chefs"
+        itemCost={chefsCost}
+      />
+      <StoreItems
+        Svg={CupcakeGod}
+        cupcakes={cupcakes}
+        purchaseItem={purchaseItem}
+        itemAmount={cupcakeGods}
+        itemDescOne="Increase the amount of cupcakes you bake by recruiting a "
+        itemDescTwo="Adds +1500 cupcakes baked every second!"
+        itemNameBold="CUPCAKE GOD!!"
+        itemFuncName="cupcakeGods"
+        itemCost={cupcakeGodsCost}
+      />
     </Flex>
   );
 }

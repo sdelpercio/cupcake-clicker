@@ -110,7 +110,7 @@ function App() {
   // increase cupcakes on click
   function bakeCupcakes() {
     let total = 1;
-    total += 2 * toasters;
+    total += 3 * toasters;
     total += 10 * ovens;
     total += 25 * industrialOvens;
 
