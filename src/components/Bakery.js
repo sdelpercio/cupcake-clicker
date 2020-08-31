@@ -59,7 +59,7 @@ function Bakery({
           fontSize="2rem"
           fontFamily="'Sue Ellen Francisco', cursive"
         >
-          {cupcakes}
+          {cupcakes.toLocaleString()}
         </Text>
 
         <Text
