@@ -131,7 +131,7 @@ function App() {
 
       setTotal((t) => t + total);
       setCupcakes((cupcakes) => cupcakes + total);
-      document.title = `${cupcakes} Cupcakes Baked`;
+      document.title = `${cupcakes.toLocaleString()} Cupcakes Baked`;
     },
     total ? 1000 : null
   );
