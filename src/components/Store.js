@@ -8,7 +8,7 @@ import { ReactComponent as Friends } from "../media/friends-svg.svg";
 import { ReactComponent as Chef } from "../media/chef-svg.svg";
 import { ReactComponent as CupcakeGod } from "../media/cupcake-god-svg.svg";
 // styles
-import { Flex, Text, Button, Box } from "@chakra-ui/core";
+import { Flex } from "@chakra-ui/core";
 
 function Store({
   purchaseItem,
