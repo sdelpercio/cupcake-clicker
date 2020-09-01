@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 // styles
 import {
@@ -9,13 +9,22 @@ import {
   FormControl,
   Button,
   Input,
+  InputGroup,
+  InputRightElement,
 } from "@chakra-ui/core";
 
 function LoginRegister({ user, setUser }) {
+  // form state
+  const [showPassword, setShowPassword] = useState(false);
+  const [showRetype, setShowRetype] = useState(false);
   const { register, handleSubmit, errors, formState, getValues } = useForm();
+
+  // form functions
+  const handlePassClick = () => setShowPassword((bool) => !bool);
+  const handleRetypeClick = () => setShowRetype((bool) => !bool);
   const onSubmit = (data) => console.log(data);
 
-  // TODO: validation
+  // validation functions
   function validateUsername(value) {
     let error;
     if (!value) {
@@ -62,37 +71,57 @@ function LoginRegister({ user, setUser }) {
         //   REGISTER
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormControl
+            isRequired
             isInvalid={
               errors.Username || errors.Password || errors.RetypePassword
             }
           >
+            {/* USERNAME */}
             <FormLabel htmlFor="Username">Username</FormLabel>
             <Input
               type="text"
               placeholder="Username"
               name="Username"
-              ref={register({})}
+              ref={register({ validate: validateUsername })}
             />
             <FormErrorMessage>
               {errors.Username && errors.Username.message}
             </FormErrorMessage>
+            {/* PASSWORD */}
             <FormLabel htmlFor="Password">Password</FormLabel>
-            <Input
-              type="text"
-              placeholder="Password"
-              name="Password"
-              ref={register({})}
-            />
+            <InputGroup size="md">
+              <Input
+                pr="3rem"
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter Password"
+                name="Password"
+                ref={register({ validate: validatePassword })}
+              />
+              <InputRightElement width="4rem">
+                <Button h="1.75rem" size="sm" onClick={handlePassClick}>
+                  {showPassword ? "Hide" : "Show"}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
             <FormErrorMessage>
               {errors.Password && errors.Password.message}
             </FormErrorMessage>
+            {/* RETYPE PASSWORD */}
             <FormLabel htmlFor="RetypePassword">Re-type Password</FormLabel>
-            <Input
-              type="text"
-              placeholder="Re-type Password"
-              name="RetypePassword"
-              ref={register({})}
-            />
+            <InputGroup size="md">
+              <Input
+                pr="3rem"
+                type={showRetype ? "text" : "password"}
+                placeholder="Re-type Password"
+                name="RetypePassword"
+                ref={register({ validate: validateRetypePassword })}
+              />
+              <InputRightElement width="4rem">
+                <Button h="1.75rem" size="sm" onClick={handleRetypeClick}>
+                  {showRetype ? "Hide" : "Show"}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
             <FormErrorMessage>
               {errors.RetypePassword && errors.RetypePassword.message}
             </FormErrorMessage>
