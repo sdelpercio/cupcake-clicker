@@ -37,7 +37,7 @@ function LoginRegister({ user, setUser }) {
   function validatePassword(value) {
     let error;
     const expression = new RegExp(
-      "^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[^da-zA-Z])$"
+      "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{0,}$"
     );
     if (!value) {
       error = "Password is required";
@@ -70,12 +70,7 @@ function LoginRegister({ user, setUser }) {
       {user.name === "Aspiring Baker" ? (
         //   REGISTER
         <form onSubmit={handleSubmit(onSubmit)}>
-          <FormControl
-            isRequired
-            isInvalid={
-              errors.Username || errors.Password || errors.RetypePassword
-            }
-          >
+          <FormControl isRequired isInvalid={errors.Username}>
             {/* USERNAME */}
             <FormLabel htmlFor="Username">Username</FormLabel>
             <Input
@@ -87,7 +82,9 @@ function LoginRegister({ user, setUser }) {
             <FormErrorMessage>
               {errors.Username && errors.Username.message}
             </FormErrorMessage>
-            {/* PASSWORD */}
+          </FormControl>
+          {/* PASSWORD */}
+          <FormControl isRequired isInvalid={errors.Password}>
             <FormLabel htmlFor="Password">Password</FormLabel>
             <InputGroup size="md">
               <Input
@@ -106,7 +103,9 @@ function LoginRegister({ user, setUser }) {
             <FormErrorMessage>
               {errors.Password && errors.Password.message}
             </FormErrorMessage>
-            {/* RETYPE PASSWORD */}
+          </FormControl>
+          {/* RETYPE PASSWORD */}
+          <FormControl isRequired isInvalid={errors.RetypePassword}>
             <FormLabel htmlFor="RetypePassword">Re-type Password</FormLabel>
             <InputGroup size="md">
               <Input
