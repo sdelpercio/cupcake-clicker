@@ -10,22 +10,23 @@ import { ReactComponent as CupcakeGod } from "../media/cupcake-god-svg.svg";
 // styles
 import { Flex } from "@chakra-ui/core";
 
-function Store({
-  purchaseItem,
-  cupcakes,
-  toasters,
-  ovens,
-  industrialOvens,
-  friends,
-  chefs,
-  cupcakeGods,
-  toastersCost,
-  ovensCost,
-  industrialOvensCost,
-  friendsCost,
-  chefsCost,
-  cupcakeGodsCost,
-}) {
+function Store({ purchaseItem, user }) {
+  const {
+    cupcakes,
+    toasters,
+    ovens,
+    industrialOvens,
+    friends,
+    chefs,
+    cupcakeGods,
+    toastersCost,
+    ovensCost,
+    industrialOvensCost,
+    friendsCost,
+    chefsCost,
+    cupcakeGodsCost,
+  } = user;
+
   return (
     <Flex
       direction="column"

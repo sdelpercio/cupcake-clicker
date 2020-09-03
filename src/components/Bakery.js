@@ -13,16 +13,7 @@ import { Flex, Text, Button } from "@chakra-ui/core";
 // import { useSpring, animated } from "react-spring";
 // import { Keyframes } from "react-spring/renderprops";
 
-function Bakery({
-  cupcakes,
-  bakeCupcakes,
-  toasters,
-  ovens,
-  industrialOvens,
-  friends,
-  chefs,
-  cupcakeGods,
-}) {
+function Bakery({ bakeCupcakes, user }) {
   // TEST: React-spring
   // const [resetScale, setResetScale] = useState(false);
 
@@ -34,6 +25,16 @@ function Bakery({
   //   reset: resetScale,
   // });
   // const AnimatedCupcake = animated(Cupcake);
+
+  const {
+    cupcakes,
+    toasters,
+    ovens,
+    industrialOvens,
+    friends,
+    chefs,
+    cupcakeGods,
+  } = user;
 
   return (
     <Flex direction="column" m="0 auto">
