@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Route } from "react-router-dom";
 import { useInterval } from "./utils/useInterval";
+import axios from "axios";
 // components
 import Header from "./components/Header";
 import Bakery from "./components/Bakery";
@@ -156,7 +157,11 @@ function App() {
     <Flex flexDirection="column">
       <Header user={user} />
       <Route path="/auth">
-        <LoginRegister user={user} />
+        <LoginRegister
+          user={user}
+          // onRegisterSubmit={onRegisterSubmit}
+          setUser={setUser}
+        />
       </Route>
       <Route path="/store">
         <Store purchaseItem={purchaseItem} user={user} />
