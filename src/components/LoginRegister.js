@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 // styles
 import {
   Flex,
@@ -22,7 +23,27 @@ function LoginRegister({ user, setUser }) {
   // form functions
   const handlePassClick = () => setShowPassword((bool) => !bool);
   const handleRetypeClick = () => setShowRetype((bool) => !bool);
-  const onSubmit = (data) => console.log(data);
+
+  // user login/register functions
+  const onRegisterSubmit = (data) => {
+    console.log("pre post", data);
+    const newUser = {
+      username: data.username,
+      password: data.password,
+    };
+
+    axios
+      .post(
+        "https://cupcake-clicker-be.herokuapp.com/api/auth/register",
+        newUser
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   // validation functions
   function validateUsername(value) {
@@ -51,7 +72,7 @@ function LoginRegister({ user, setUser }) {
   }
   function validateRetypePassword(value) {
     let error;
-    const top_password = getValues("Password");
+    const top_password = getValues("password");
     if (!value) {
       error = "Must re-type your password";
     } else if (value !== top_password) {
@@ -69,29 +90,29 @@ function LoginRegister({ user, setUser }) {
       </Text>
       {user.name === "Aspiring Baker" ? (
         //   REGISTER
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <FormControl isRequired isInvalid={errors.Username}>
+        <form onSubmit={handleSubmit(onRegisterSubmit)}>
+          <FormControl isRequired isInvalid={errors.username}>
             {/* USERNAME */}
-            <FormLabel htmlFor="Username">Username</FormLabel>
+            <FormLabel htmlFor="username">Username</FormLabel>
             <Input
               type="text"
               placeholder="Username"
-              name="Username"
+              name="username"
               ref={register({ validate: validateUsername })}
             />
             <FormErrorMessage>
-              {errors.Username && errors.Username.message}
+              {errors.username && errors.username.message}
             </FormErrorMessage>
           </FormControl>
           {/* PASSWORD */}
-          <FormControl isRequired isInvalid={errors.Password}>
-            <FormLabel htmlFor="Password">Password</FormLabel>
+          <FormControl isRequired isInvalid={errors.password}>
+            <FormLabel htmlFor="password">Password</FormLabel>
             <InputGroup size="md">
               <Input
                 pr="3rem"
                 type={showPassword ? "text" : "password"}
                 placeholder="Enter Password"
-                name="Password"
+                name="password"
                 ref={register({ validate: validatePassword })}
               />
               <InputRightElement width="4rem">
@@ -101,18 +122,18 @@ function LoginRegister({ user, setUser }) {
               </InputRightElement>
             </InputGroup>
             <FormErrorMessage>
-              {errors.Password && errors.Password.message}
+              {errors.password && errors.password.message}
             </FormErrorMessage>
           </FormControl>
           {/* RETYPE PASSWORD */}
-          <FormControl isRequired isInvalid={errors.RetypePassword}>
-            <FormLabel htmlFor="RetypePassword">Re-type Password</FormLabel>
+          <FormControl isRequired isInvalid={errors.retypepassword}>
+            <FormLabel htmlFor="retypepassword">Re-type Password</FormLabel>
             <InputGroup size="md">
               <Input
                 pr="3rem"
                 type={showRetype ? "text" : "password"}
                 placeholder="Re-type Password"
-                name="RetypePassword"
+                name="retypepassword"
                 ref={register({ validate: validateRetypePassword })}
               />
               <InputRightElement width="4rem">
@@ -122,7 +143,7 @@ function LoginRegister({ user, setUser }) {
               </InputRightElement>
             </InputGroup>
             <FormErrorMessage>
-              {errors.RetypePassword && errors.RetypePassword.message}
+              {errors.retypepassword && errors.retypepassword.message}
             </FormErrorMessage>
           </FormControl>
           <Button isLoading={formState.isSubmitting} type="submit">
