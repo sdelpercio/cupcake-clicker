@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Route } from "react-router-dom";
 import { useInterval } from "./utils/useInterval";
-import axios from "axios";
 // components
 import Header from "./components/Header";
 import Bakery from "./components/Bakery";
@@ -13,6 +12,7 @@ import { Flex } from "@chakra-ui/core";
 function App() {
   // retrieve latest localstorage info if possible
   const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
 
   // user information
   const guestUser = {
@@ -33,7 +33,6 @@ function App() {
     cupcakeGodsCost: 100000,
   };
   const [user, setUser] = useState(storedUser ? storedUser : guestUser);
-  const [loggedIn, setLoggedIn] = useState(false);
 
   // setup item purchasing functions
   const purchaseLookup = {};
@@ -159,8 +158,8 @@ function App() {
       <Route path="/auth">
         <LoginRegister
           user={user}
-          // onRegisterSubmit={onRegisterSubmit}
           setUser={setUser}
+          storedToken={storedToken}
         />
       </Route>
       <Route path="/store">

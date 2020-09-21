@@ -1,10 +1,17 @@
 import React, { useState } from "react";
+import {
+  useRouteMatch,
+  Link as ReactLink,
+  Switch,
+  Route,
+} from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 // styles
 import {
   Flex,
   Text,
+  Link,
   FormErrorMessage,
   FormLabel,
   FormControl,
@@ -14,10 +21,13 @@ import {
   InputRightElement,
 } from "@chakra-ui/core";
 
-function LoginRegister({ user, setUser }) {
+function LoginRegister({ user, setUser, storedToken }) {
+  let { path, url } = useRouteMatch();
+
   // form state
   const [showPassword, setShowPassword] = useState(false);
   const [showRetype, setShowRetype] = useState(false);
+  const [regError, setRegError] = useState("");
   const { register, handleSubmit, errors, formState, getValues } = useForm();
 
   // form functions
@@ -26,11 +36,11 @@ function LoginRegister({ user, setUser }) {
 
   // user login/register functions
   const onRegisterSubmit = (data) => {
-    console.log("pre post", data);
     const newUser = {
       username: data.username,
       password: data.password,
     };
+    setRegError("");
 
     axios
       .post(
@@ -38,10 +48,14 @@ function LoginRegister({ user, setUser }) {
         newUser
       )
       .then((res) => {
-        console.log(res);
+        localStorage.setItem("token", res.token);
+        setUser((user) => ({
+          ...user,
+          name: res.username,
+        }));
       })
       .catch((err) => {
-        console.log(err);
+        setRegError("There was an error registering, try again.");
       });
   };
 
@@ -83,79 +97,112 @@ function LoginRegister({ user, setUser }) {
 
   return (
     <Flex direction="column" m="0 auto">
-      <Text>
-        {user.name === "Aspiring Baker"
-          ? "Register to save your cupcakes!"
-          : `Your Cupcakes are safe with us, ${user.name} :)`}
-      </Text>
-      {user.name === "Aspiring Baker" ? (
-        //   REGISTER
-        <form onSubmit={handleSubmit(onRegisterSubmit)}>
-          <FormControl isRequired isInvalid={errors.username}>
-            {/* USERNAME */}
-            <FormLabel htmlFor="username">Username</FormLabel>
-            <Input
-              type="text"
-              placeholder="Username"
-              name="username"
-              ref={register({ validate: validateUsername })}
-            />
-            <FormErrorMessage>
-              {errors.username && errors.username.message}
-            </FormErrorMessage>
-          </FormControl>
-          {/* PASSWORD */}
-          <FormControl isRequired isInvalid={errors.password}>
-            <FormLabel htmlFor="password">Password</FormLabel>
-            <InputGroup size="md">
+      <Flex
+        width="100%"
+        mx="auto"
+        mb="2rem"
+        justify="space-evenly"
+        align="center"
+      >
+        <Link
+          as={ReactLink}
+          to={`${path}/register`}
+          color={path === "/auth/register" ? "white" : "black"}
+          fontSize="2rem"
+          fontFamily="'Sue Ellen Francisco', cursive"
+          _hover={{ color: "white" }}
+          _active={{ outline: "0", border: "none" }}
+          _focus={{ outline: "0", border: "none" }}
+        >
+          Register
+        </Link>
+        <Link
+          as={ReactLink}
+          to={`${path}/login`}
+          color={path === "/auth/login" ? "white" : "black"}
+          fontSize="2rem"
+          fontFamily="'Sue Ellen Francisco', cursive"
+          _hover={{ color: "white" }}
+          _active={{ outline: "0", border: "none" }}
+          _focus={{ outline: "0", border: "none" }}
+        >
+          Login
+        </Link>
+      </Flex>
+      <Switch>
+        <Route exact path="/auth">
+          <Text fontSize="1.6rem">
+            Login or Register to save your cupcakes :)
+          </Text>
+        </Route>
+        <Route path={`${path}/register`}>
+          {/* REGISTER */}
+          <form onSubmit={handleSubmit(onRegisterSubmit)}>
+            <FormControl isRequired isInvalid={errors.username}>
+              {/* USERNAME */}
+              <FormLabel htmlFor="username">Username</FormLabel>
               <Input
-                pr="3rem"
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter Password"
-                name="password"
-                ref={register({ validate: validatePassword })}
+                type="text"
+                placeholder="Username"
+                name="username"
+                ref={register({ validate: validateUsername })}
               />
-              <InputRightElement width="4rem">
-                <Button h="1.75rem" size="sm" onClick={handlePassClick}>
-                  {showPassword ? "Hide" : "Show"}
-                </Button>
-              </InputRightElement>
-            </InputGroup>
-            <FormErrorMessage>
-              {errors.password && errors.password.message}
-            </FormErrorMessage>
-          </FormControl>
-          {/* RETYPE PASSWORD */}
-          <FormControl isRequired isInvalid={errors.retypepassword}>
-            <FormLabel htmlFor="retypepassword">Re-type Password</FormLabel>
-            <InputGroup size="md">
-              <Input
-                pr="3rem"
-                type={showRetype ? "text" : "password"}
-                placeholder="Re-type Password"
-                name="retypepassword"
-                ref={register({ validate: validateRetypePassword })}
-              />
-              <InputRightElement width="4rem">
-                <Button h="1.75rem" size="sm" onClick={handleRetypeClick}>
-                  {showRetype ? "Hide" : "Show"}
-                </Button>
-              </InputRightElement>
-            </InputGroup>
-            <FormErrorMessage>
-              {errors.retypepassword && errors.retypepassword.message}
-            </FormErrorMessage>
-          </FormControl>
-          <Button isLoading={formState.isSubmitting} type="submit">
-            Submit
-          </Button>
-        </form>
-      ) : (
-        <Flex>Login</Flex>
-      )}
+              <FormErrorMessage>
+                {errors.username && errors.username.message}
+              </FormErrorMessage>
+            </FormControl>
+            {/* PASSWORD */}
+            <FormControl isRequired isInvalid={errors.password}>
+              <FormLabel htmlFor="password">Password</FormLabel>
+              <InputGroup size="md">
+                <Input
+                  pr="3rem"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter Password"
+                  name="password"
+                  ref={register({ validate: validatePassword })}
+                />
+                <InputRightElement width="4rem">
+                  <Button h="1.75rem" size="sm" onClick={handlePassClick}>
+                    {showPassword ? "Hide" : "Show"}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+              <FormErrorMessage>
+                {errors.password && errors.password.message}
+              </FormErrorMessage>
+            </FormControl>
+            {/* RETYPE PASSWORD */}
+            <FormControl isRequired isInvalid={errors.retypepassword}>
+              <FormLabel htmlFor="retypepassword">Re-type Password</FormLabel>
+              <InputGroup size="md">
+                <Input
+                  pr="3rem"
+                  type={showRetype ? "text" : "password"}
+                  placeholder="Re-type Password"
+                  name="retypepassword"
+                  ref={register({ validate: validateRetypePassword })}
+                />
+                <InputRightElement width="4rem">
+                  <Button h="1.75rem" size="sm" onClick={handleRetypeClick}>
+                    {showRetype ? "Hide" : "Show"}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+              <FormErrorMessage>
+                {errors.retypepassword && errors.retypepassword.message}
+              </FormErrorMessage>
+            </FormControl>
+            <Button isLoading={formState.isSubmitting} type="submit">
+              Submit
+            </Button>
+            {regError && <Text color="red">{regError}</Text>}
+          </form>
+        </Route>
+        <Route path={`${path}/login`}>Login</Route>
+      </Switch>
     </Flex>
   );
-  // return <Text m="0 auto">Coming Soon</Text>;
 }
 
 export default LoginRegister;
