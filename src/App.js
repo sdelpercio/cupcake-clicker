@@ -16,7 +16,7 @@ function App() {
 
   // user information
   const guestUser = {
-    name: "Aspiring Baker",
+    username: "Aspiring Baker",
     total: 0,
     cupcakes: 0,
     toasters: 0,

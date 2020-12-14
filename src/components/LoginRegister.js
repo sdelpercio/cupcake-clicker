@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { LoginInputs } from "./LoginInputs";
-import { RegisterInputs } from "./RegisterInputs";
 import {
   useRouteMatch,
   useHistory,
@@ -9,6 +7,9 @@ import {
   Route,
 } from "react-router-dom";
 import axios from "axios";
+// components
+import { LoginInputs } from "./LoginInputs";
+import { RegisterInputs } from "./RegisterInputs";
 // styles
 import { Flex, Text, Link } from "@chakra-ui/core";
 
@@ -17,6 +18,7 @@ function LoginRegister({ user, setUser, storedToken }) {
   let history = useHistory();
 
   const [regError, setRegError] = useState("");
+  const [loginError, setLoginError] = useState("");
 
   // user login/register functions
   const onRegisterSubmit = (data) => {
@@ -32,11 +34,6 @@ function LoginRegister({ user, setUser, storedToken }) {
         newUser
       )
       .then((res) => {
-        localStorage.setItem("token", res.token);
-        setUser((user) => ({
-          ...user,
-          name: res.username,
-        }));
         history.push("/auth/login");
       })
       .catch((err) => {
@@ -45,7 +42,24 @@ function LoginRegister({ user, setUser, storedToken }) {
   };
 
   const onLoginSubmit = (data) => {
-    console.log(data);
+    const loginUser = {
+      username: data.loginUsername,
+      password: data.loginPassword,
+    };
+
+    axios
+      .post(
+        "https://cupcake-clicker-be.herokuapp.com/api/auth/login",
+        loginUser
+      )
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        setUser(res.data.data);
+        history.push("/");
+      })
+      .catch((err) => {
+        setLoginError("There was an error logging in, try again.");
+      });
   };
 
   return (
@@ -97,7 +111,7 @@ function LoginRegister({ user, setUser, storedToken }) {
         </Route>
         {/* LOGIN */}
         <Route path={`${path}/login`}>
-          <LoginInputs onLoginSubmit={onLoginSubmit} />
+          <LoginInputs onLoginSubmit={onLoginSubmit} loginError={loginError} />
         </Route>
       </Switch>
     </Flex>
