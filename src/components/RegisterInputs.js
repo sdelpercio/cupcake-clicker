@@ -65,12 +65,13 @@ export const RegisterInputs = ({ onRegisterSubmit, regError }) => {
         {/* USERNAME */}
         <FormLabel htmlFor="username">Username</FormLabel>
         <Input
+          mb="1rem"
           type="text"
           placeholder="Username"
           name="username"
           ref={register({ validate: validateUsername })}
         />
-        <FormErrorMessage>
+        <FormErrorMessage mb="1rem">
           {errors.username && errors.username.message}
         </FormErrorMessage>
       </FormControl>
@@ -79,6 +80,7 @@ export const RegisterInputs = ({ onRegisterSubmit, regError }) => {
         <FormLabel htmlFor="password">Password</FormLabel>
         <InputGroup size="md">
           <Input
+            mb="1rem"
             pr="3rem"
             type={showPassword ? "text" : "password"}
             placeholder="Enter Password"
@@ -91,7 +93,7 @@ export const RegisterInputs = ({ onRegisterSubmit, regError }) => {
             </Button>
           </InputRightElement>
         </InputGroup>
-        <FormErrorMessage>
+        <FormErrorMessage mb="1rem">
           {errors.password && errors.password.message}
         </FormErrorMessage>
       </FormControl>
@@ -100,6 +102,7 @@ export const RegisterInputs = ({ onRegisterSubmit, regError }) => {
         <FormLabel htmlFor="retypepassword">Re-type Password</FormLabel>
         <InputGroup size="md">
           <Input
+            mb="1rem"
             pr="3rem"
             type={showRetype ? "text" : "password"}
             placeholder="Re-type Password"
@@ -112,14 +115,18 @@ export const RegisterInputs = ({ onRegisterSubmit, regError }) => {
             </Button>
           </InputRightElement>
         </InputGroup>
-        <FormErrorMessage>
+        <FormErrorMessage mb="1rem">
           {errors.retypepassword && errors.retypepassword.message}
         </FormErrorMessage>
       </FormControl>
-      <Button isLoading={formState.isSubmitting} type="submit">
+      <Button mb="1rem" isLoading={formState.isSubmitting} type="submit">
         Submit
       </Button>
-      {regError && <Text color="red">{regError}</Text>}
+      {regError && (
+        <Text fontSize="1.6rem" color="red">
+          {regError}
+        </Text>
+      )}
     </form>
   );
 };

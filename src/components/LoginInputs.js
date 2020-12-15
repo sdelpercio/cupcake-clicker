@@ -6,11 +6,12 @@ import {
   FormControl,
   Button,
   Input,
+  Text,
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/core";
 
-export const LoginInputs = ({ onLoginSubmit }) => {
+export const LoginInputs = ({ onLoginSubmit, loginError }) => {
   const { register, handleSubmit, formState } = useForm();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -22,6 +23,7 @@ export const LoginInputs = ({ onLoginSubmit }) => {
         {/* USERNAME */}
         <FormLabel htmlFor="loginUsername">Username</FormLabel>
         <Input
+          mb="1rem"
           type="text"
           placeholder="Username"
           name="loginUsername"
@@ -33,6 +35,7 @@ export const LoginInputs = ({ onLoginSubmit }) => {
         <FormLabel htmlFor="loginPassword">Password</FormLabel>
         <InputGroup size="md">
           <Input
+            mb="1rem"
             pr="3rem"
             type={showPassword ? "text" : "password"}
             placeholder="Enter Password"
@@ -46,9 +49,14 @@ export const LoginInputs = ({ onLoginSubmit }) => {
           </InputRightElement>
         </InputGroup>
       </FormControl>
-      <Button isLoading={formState.isSubmitting} type="submit">
+      <Button mb="1rem" isLoading={formState.isSubmitting} type="submit">
         Submit
       </Button>
+      {loginError && (
+        <Text fontSize="1.6rem" color="red">
+          {loginError}
+        </Text>
+      )}
     </form>
   );
 };

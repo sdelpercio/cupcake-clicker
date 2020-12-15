@@ -8,6 +8,7 @@ import Store from "./components/Store";
 import LoginRegister from "./components/LoginRegister";
 // styles
 import { Flex } from "@chakra-ui/core";
+import Axios from "axios";
 
 function App() {
   // retrieve latest localstorage info if possible
@@ -17,6 +18,7 @@ function App() {
   // user information
   const guestUser = {
     username: "Aspiring Baker",
+    id: 0,
     total: 0,
     cupcakes: 0,
     toasters: 0,
@@ -150,6 +152,30 @@ function App() {
       localStorage.setItem("user", JSON.stringify(user));
     },
     user.total ? 1000 * 30 : null
+  );
+  // save info to db
+  useInterval(
+    () => {
+      const userInfo = { ...user };
+      const config = {
+        headers: {
+          authorization: storedToken,
+        },
+      };
+
+      Axios.put(
+        `https://cupcake-clicker-be.herokuapp.com/api/users/${userInfo.id}`,
+        userInfo,
+        config
+      )
+        .then((res) => {
+          console.log("update performed");
+        })
+        .catch((err) => {
+          console.log("update failed");
+        });
+    },
+    user.total && storedToken ? 1000 * 60 : null
   );
 
   return (

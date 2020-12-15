@@ -54,7 +54,7 @@ function LoginRegister({ user, setUser, storedToken }) {
       )
       .then((res) => {
         localStorage.setItem("token", res.data.token);
-        setUser(res.data.data);
+        setUser(res.data.user);
         history.push("/");
       })
       .catch((err) => {
